@@ -1,0 +1,84 @@
+import { useEffect, useState, useRef } from "react";
+import "./style.css";
+import Trash from "../../assets/Trash.png";
+import api from "../../services/api";
+
+function Home() {
+  const [users, setUsers] = useState([]);
+
+  async function getUsers() {
+    const usersFromApi = await api.get("/users");
+
+    setUsers(usersFromApi.data);
+  }
+
+  async function deleteUsers(id) {
+    await api.delete(`/users/${id}`);
+    getUsers();
+  }
+
+  async function createUsers() {
+    await api.post("/users", {
+      name: inputName.current.value,
+      age: inputAge.current.value,
+      email: inputEmail.current.value,
+    });
+    getUsers();
+  }
+
+  const inputName = useRef();
+  const inputAge = useRef();
+  const inputEmail = useRef();
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  return (
+    <div className="container">
+      <form action="">
+        <h1>Cadastro de Usuários</h1>
+        <input name="name" type="text" placeholder="Nome:" ref={inputName} />
+        <input name="age" type="number" placeholder="Idade:" ref={inputAge} />
+        <input
+          name="email"
+          type="email"
+          placeholder="E-mail:"
+          ref={inputEmail}
+        />
+        <button type="button" onClick={createUsers}>
+          Cadastrar
+        </button>
+      </form>
+
+      {users.map((user) => (
+        <div key={user.id} className="Card">
+          <img
+            src={`https://api.dicebear.com/9.x/adventurer/svg?seed=${encodeURIComponent(
+              user.name
+            )}`}
+            alt="avatar"
+            width={40}
+            height={40}
+          />
+          <div>
+            <p>
+              Nome: <span>{user.name}</span>
+            </p>
+            <p>
+              Idade: <span>{user.age}</span>
+            </p>
+            <p>
+              Email: <span>{user.email}</span>
+            </p>
+          </div>
+          <button>
+            <img src={Trash} width={20} onClick={() => deleteUsers(user.id)} />
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default Home;
