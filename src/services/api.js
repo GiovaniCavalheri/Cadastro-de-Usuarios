@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: "https://user-registration-api-0p47.onrender.com",
 });
 
 export default api 
