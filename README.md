@@ -24,7 +24,8 @@ Aplicação fullstack desenvolvida como parte do curso de React do canal **Rodol
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)
 
 ## 🌐 Links de Produção
-🔗 **Aplicação Front-end:** [registro-de-usuário-front-psi.vercel.app](https://registro-de-usuário-front-psi.vercel.app)  
+🔗 **Aplicação Front-end:** [registro-de-usuário-front-psi.vercel.app](https://user-registration-front-psi.vercel.app/) 
+
 🔗 **API Back-end:** [user-registration-api-0p47.onrender.com](https://user-registration-api-0p47.onrender.com)  
 
 ## ✨ Funcionalidades
